@@ -62,7 +62,7 @@ curl "http://localhost:8000/work?ms=50"
 ---
 
 ## Metrics
-
+More PromQL examples: `prometheus/queries.promql`
 ### HTTP Request Rate
 
 ```promql
@@ -95,7 +95,26 @@ kubectl get pods -n monitoring
 
 ---
 
+## Cleanup
+
+```bash
+helm uninstall monitoring -n monitoring
+kubectl delete namespace monitoring
+kind delete cluster --name obs-demo
+
+
 ## Notes
 
 - /ready endpoint fails without Redis (intentional readiness behavior)
 - On Windows, prefer Prometheus UI over findstr
+
+**## Troubleshooting**
+
+- Prometheus UI not opening: re-run the port-forward to 9090 (it stops if the pod restarts).
+- curl localhost:8000 failing: ensure `kubectl port-forward svc/obs-api 8000:8000` is running.
+- Prometheus target missing: confirm ServiceMonitor labels match the Service (`app: obs-api`) and ServiceMonitor `release: monitoring`.
+
+
+
+Author
+Yash Kumar Lal Das
