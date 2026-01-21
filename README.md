@@ -113,8 +113,3 @@ kind delete cluster --name obs-demo
 - Prometheus UI not opening: re-run the port-forward to 9090 (it stops if the pod restarts).
 - curl localhost:8000 failing: ensure `kubectl port-forward svc/obs-api 8000:8000` is running.
 - Prometheus target missing: confirm ServiceMonitor labels match the Service (`app: obs-api`) and ServiceMonitor `release: monitoring`.
-
-
-
-Author
-Yash Kumar Lal Das
